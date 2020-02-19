@@ -68,3 +68,9 @@ curl --request POST \
 ```
 
 Ready requests will only work if the other micro service has the app_key.
+
+## 🤞 Coming Soon
+
+1. Email update
+2. Password update
+3. Forgot password
