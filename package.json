@@ -32,7 +32,9 @@
     "@rocketseat/adonis-bull": "^0.2.1",
     "mysql": "^2.18.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "knex": "^0.19.5"
+  },
   "autoload": {
     "App": "./app"
   }
