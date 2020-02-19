@@ -3,97 +3,136 @@
 const Token = use('App/Models/Token');
 const User = use('App/Models/User');
 const { test, trait } = use('Test/Suite')('User');
+const Env = use('Env');
 
 trait('Test/ApiClient');
 trait('Auth/Client');
 trait('DatabaseTransactions');
 
-test('create user: add', async ({ client }) => {
-    const response = await client.post('/user').send(
-        {
-            "full_name": "Teste",
-            "email": "teste@gmail.com",
-            "password": "123mudar",
-            "password_confirmation": "123mudar",
-            "cpf": "289.334.580-85",
-            "rg": "46.847.047-5",
-            "cep": "00000-295",
-            "street": "Avenida fake",
-            "street_number": "725",
-            "district": "Bairro",
-            "state": "Mato Grosso do Sul"
-        }
-    ).end();
+test('create user: missing app key', async ({ client }) => {
+    const response = await client.post('/user')
+        .send(
+            {
+                "full_name": "Teste",
+                "email": "teste@gmail.com",
+                "password": "123mudar",
+                "password_confirmation": "123mudar",
+                "cpf": "289.334.580-85",
+                "rg": "46.847.047-5",
+                "cep": "00000-295",
+                "street": "Avenida fake",
+                "street_number": "725",
+                "district": "Bairro",
+                "state": "Mato Grosso do Sul"
+            }
+        ).end();
 
-    response.assertStatus(200);
+    response.assertStatus(400);
+    response.assertError([
+        { 
+            message: 'This request does not have permission',
+            field: 'App Key',
+            validation: 'valid'
+        }
+    ]);
 });
 
 test('create user: missing fields required', async ({ client }) => {
-    const response = await client.post('/user').end();
+    const response = await client.post('/user').header('app-key', Env.getOrFail('APP_KEY')).end();
 
     response.assertStatus(400);
 });
 
+test('create user: add', async ({ client }) => {
+    const response = await client.post('/user')
+        .header('app-key', Env.getOrFail('APP_KEY'))
+        .send(
+            {
+                "full_name": "Teste",
+                "email": "teste@gmail.com",
+                "password": "123mudar",
+                "password_confirmation": "123mudar",
+                "cpf": "289.334.580-85",
+                "rg": "46.847.047-5",
+                "cep": "00000-295",
+                "street": "Avenida fake",
+                "street_number": "725",
+                "district": "Bairro",
+                "state": "Mato Grosso do Sul"
+            }
+        ).end();
+
+    response.assertStatus(200);
+});
+
 test('create user: duplicate registration', async ({ client }) => {
-    await client.post('/user').send(
-        {
-            "full_name": "Teste",
-            "email": "teste@gmail.com",
-            "password": "123mudar",
-            "password_confirmation": "123mudar",
-            "cpf": "289.334.580-85",
-            "rg": "46.847.047-5",
-            "cep": "00000-295",
-            "street": "Avenida fake",
-            "street_number": "725",
-            "district": "Bairro",
-            "state": "Mato Grosso do Sul"
-        }
-    ).end();
+    await client.post('/user')
+        .header('app-key', Env.getOrFail('APP_KEY'))
+        .send(
+            {
+                "full_name": "Teste",
+                "email": "teste@gmail.com",
+                "password": "123mudar",
+                "password_confirmation": "123mudar",
+                "cpf": "289.334.580-85",
+                "rg": "46.847.047-5",
+                "cep": "00000-295",
+                "street": "Avenida fake",
+                "street_number": "725",
+                "district": "Bairro",
+                "state": "Mato Grosso do Sul"
+            }
+        ).end();
     
-    const response = await client.post('/user').send(
-        {
-            "full_name": "Teste",
-            "email": "teste@gmail.com",
-            "password": "123mudar",
-            "password_confirmation": "123mudar",
-            "cpf": "289.334.580-85",
-            "rg": "46.847.047-5",
-            "cep": "00000-295",
-            "street": "Avenida fake",
-            "street_number": "725",
-            "district": "Bairro",
-            "state": "Mato Grosso do Sul"
-        }
-    ).end();
+    const response = await client.post('/user')
+        .header('app-key', Env.getOrFail('APP_KEY'))
+        .send(
+            {
+                "full_name": "Teste",
+                "email": "teste@gmail.com",
+                "password": "123mudar",
+                "password_confirmation": "123mudar",
+                "cpf": "289.334.580-85",
+                "rg": "46.847.047-5",
+                "cep": "00000-295",
+                "street": "Avenida fake",
+                "street_number": "725",
+                "district": "Bairro",
+                "state": "Mato Grosso do Sul"
+            }
+        ).end();
 
     response.assertStatus(400);
 });
 
 test('verify email: check email using the token', async ({ client }) => {
-    await client.post('/user').send(
-        {
-            "full_name": "Teste",
-            "email": "teste@gmail.com",
-            "password": "123mudar",
-            "password_confirmation": "123mudar",
-            "cpf": "289.334.580-85",
-            "rg": "46.847.047-5",
-            "cep": "00000-295",
-            "street": "Avenida fake",
-            "street_number": "725",
-            "district": "Bairro",
-            "state": "Mato Grosso do Sul"
-        }
-    ).end();
+    await client.post('/user')
+        .header('app-key', Env.getOrFail('APP_KEY'))
+        .send(
+            {
+                "full_name": "Teste",
+                "email": "teste@gmail.com",
+                "password": "123mudar",
+                "password_confirmation": "123mudar",
+                "cpf": "289.334.580-85",
+                "rg": "46.847.047-5",
+                "cep": "00000-295",
+                "street": "Avenida fake",
+                "street_number": "725",
+                "district": "Bairro",
+                "state": "Mato Grosso do Sul"
+            }
+        ).end();
 
     const { id } = await User.findBy('email', 'teste@gmail.com');
     const { token } = await Token.findBy('user_id', id);
-    const response = await client.post('/user/verifyEmail').send(
-        {
-            "token": token
-        }
-    ).end();
+    const response = await client.post('/user/verifyEmail')
+        .header('app-key', Env.getOrFail('APP_KEY'))
+        .send(
+            {
+                "token": token
+            }
+        ).end();
 
     response.assertStatus(200);
     response.assertJSONSubset(
@@ -104,11 +143,13 @@ test('verify email: check email using the token', async ({ client }) => {
 });
 
 test('verify email: check token is invalid or expired', async ({ client }) => {
-    const response = await client.post('/user/verifyEmail').send(
-        {
-            "token": "327780871b9432f20daa1153"
-        }
-    ).end();
+    const response = await client.post('/user/verifyEmail')
+        .header('app-key', Env.getOrFail('APP_KEY'))
+        .send(
+            {
+                "token": "327780871b9432f20daa1153"
+            }
+        ).end();
 
     response.assertStatus(400);
     response.assertError([
@@ -120,65 +161,93 @@ test('verify email: check token is invalid or expired', async ({ client }) => {
     ]);
 });
 
-test('session: create user session', async ({ client }) => {
-    await client.post('/user').send(
-        {
-            "full_name": "Teste",
-            "email": "teste@gmail.com",
-            "password": "123mudar",
-            "password_confirmation": "123mudar",
-            "cpf": "289.334.580-85",
-            "rg": "46.847.047-5",
-            "cep": "00000-295",
-            "street": "Avenida fake",
-            "street_number": "725",
-            "district": "Bairro",
-            "state": "Mato Grosso do Sul"
+test('verify email: missing app key', async ({ client }) => {
+    const response = await client.post('/user/verifyEmail')
+        .send(
+            {
+                "token": "327780871b9432f20daa1153"
+            }
+        ).end();
+
+    response.assertStatus(400);
+    response.assertError([
+        { 
+            message: 'This request does not have permission',
+            field: 'App Key',
+            validation: 'valid'
         }
-    ).end();
+    ]);
+});
+
+test('session: create user session', async ({ client }) => {
+    await client.post('/user')
+        .header('app-key', Env.getOrFail('APP_KEY'))
+        .send(
+            {
+                "full_name": "Teste",
+                "email": "teste@gmail.com",
+                "password": "123mudar",
+                "password_confirmation": "123mudar",
+                "cpf": "289.334.580-85",
+                "rg": "46.847.047-5",
+                "cep": "00000-295",
+                "street": "Avenida fake",
+                "street_number": "725",
+                "district": "Bairro",
+                "state": "Mato Grosso do Sul"
+            }
+        ).end();
 
     const { id } = await User.findBy('email', 'teste@gmail.com');
     const { token } = await Token.findBy('user_id', id);
 
-    await client.post('/user/verifyEmail').send(
-        {
-            "token": token
-        }
-    ).end();
+    await client.post('/user/verifyEmail')
+        .header('app-key', Env.getOrFail('APP_KEY'))
+        .send(
+            {
+                "token": token
+            }
+        ).end();
     
-    const response = await client.post('/user/session').send(
-        {
-            "uid": "teste@gmail.com",
-            "password": "123mudar"
-        }
-    ).end();
+    const response = await client.post('/user/session')
+        .header('app-key', Env.getOrFail('APP_KEY'))
+        .send(
+            {
+                "uid": "teste@gmail.com",
+                "password": "123mudar"
+            }
+        ).end();
 
     response.assertStatus(200);
 });
 
 test('session: try create user session without having selected the email', async ({ client }) => {
-    await client.post('/user').send(
-        {
-            "full_name": "Teste",
-            "email": "teste@gmail.com",
-            "password": "123mudar",
-            "password_confirmation": "123mudar",
-            "cpf": "289.334.580-85",
-            "rg": "46.847.047-5",
-            "cep": "00000-295",
-            "street": "Avenida fake",
-            "street_number": "725",
-            "district": "Bairro",
-            "state": "Mato Grosso do Sul"
-        }
-    ).end();
+    await client.post('/user')
+        .header('app-key', Env.getOrFail('APP_KEY'))
+        .send(
+            {
+                "full_name": "Teste",
+                "email": "teste@gmail.com",
+                "password": "123mudar",
+                "password_confirmation": "123mudar",
+                "cpf": "289.334.580-85",
+                "rg": "46.847.047-5",
+                "cep": "00000-295",
+                "street": "Avenida fake",
+                "street_number": "725",
+                "district": "Bairro",
+                "state": "Mato Grosso do Sul"
+            }
+        ).end();
 
-    const response = await client.post('/user/session').send(
-        {
-            "uid": "teste@gmail.com",
-            "password": "123mudar"
-        }
-    ).end();
+    const response = await client.post('/user/session')
+        .header('app-key', Env.getOrFail('APP_KEY'))
+        .send(
+            {
+                "uid": "teste@gmail.com",
+                "password": "123mudar"
+            }
+        ).end();
 
     response.assertStatus(400);
     response.assertError([
@@ -191,12 +260,33 @@ test('session: try create user session without having selected the email', async
 });
 
 test('session: use any info to try to create session', async ({ client }) => {
-    const response = await client.post('/user/session').send(
-        {
-            "uid": "teste@gmail.com",
-            "password": "123mudar"
-        }
-    ).end();
+    const response = await client.post('/user/session')
+        .header('app-key', Env.getOrFail('APP_KEY'))
+        .send(
+            {
+                "uid": "teste@gmail.com",
+                "password": "123mudar"
+            }
+        ).end();
 
     response.assertStatus(400);
+});
+
+test('session: missing app key', async ({ client }) => {
+    const response = await client.post('/user/session')
+        .send(
+            {
+                "uid": "teste@gmail.com",
+                "password": "123mudar"
+            }
+        ).end();
+
+    response.assertStatus(400);
+    response.assertError([
+        { 
+            message: 'This request does not have permission',
+            field: 'App Key',
+            validation: 'valid'
+        }
+    ]);
 });

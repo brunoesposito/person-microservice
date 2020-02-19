@@ -1,10 +1,23 @@
 'use strict'
 
 const Persona = use('Persona');
+const Env = use('Env');
 
 class UserController {
 
-    async register ({ request }) {
+    async register ({ request, response }) {
+        const appKey = request.header('app-key');
+        
+        if( appKey !== Env.getOrFail('APP_KEY') ){
+            return response.status(400).send([
+                { 
+                    message: 'This request does not have permission',
+                    field: 'App Key',
+                    validation: 'valid'
+                }
+            ]);
+        }
+
         const data = request.only([ 'full_name', 'email', 'password', 'password_confirmation', 'cpf', 'rg', 'cep', 'street', 'street_number', 'district', 'state', 'complement' ]);
         const user = await Persona.register(data);
         
@@ -13,6 +26,18 @@ class UserController {
 
     async verifyEmail ({ request, response }) {
         try {
+            const appKey = request.header('app-key');
+        
+            if( appKey !== Env.getOrFail('APP_KEY') ){
+                return response.status(400).send([
+                    { 
+                        message: 'This request does not have permission',
+                        field: 'App Key',
+                        validation: 'valid'
+                    }
+                ]);
+            }
+
             const { token } = request.only([ 'token' ]);
             const user = await Persona.verifyEmail(token);
         
@@ -29,6 +54,18 @@ class UserController {
     }
 
     async session ({ request, auth, response }) {
+        const appKey = request.header('app-key');
+        
+        if( appKey !== Env.getOrFail('APP_KEY') ){
+            return response.status(400).send([
+                { 
+                    message: 'This request does not have permission',
+                    field: 'App Key',
+                    validation: 'valid'
+                }
+            ]);
+        }
+        
         const { uid, password } = request.only(['uid', 'password']);
         const { email, account_status } = await Persona.verify({ uid, password });
 
