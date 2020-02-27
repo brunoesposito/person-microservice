@@ -1,27 +1,14 @@
-<h1 align="center"> <img src="./resources/views/readme/icon_people.svg" style="vertical-align: middle" width="30" /> Person Microservice </hi>
-
-## 🚀 Getting Start
+<div align="center">
 
 <img src="./resources/views/readme/icon_person.svg" width="230" />
 
-This microservice was created with the purpose of having a module, in Node js, for creating and maintaining the registration of a system. Below you will get information on what technology was used, how to run the application, among other information
+# Person Microservice
 
-## 👨‍💻 Technology
-<a href="https://adonisjs.com/">
-    <img alt="AdonisJS" src="resources/views/readme/adonisjs.svg" height="40" />
-</a>
-<a href="https://github.com/adonisjs/adonis-persona">
-    <img alt="Adonis Person" src="resources/views/readme/adonis_person.svg" height="40" />
-</a>
-<a href="https://github.com/Rocketseat/adonis-bull">
-    <img alt="Adonis Bull" src="resources/views/readme/adonis_bull.png" height="40" />
-</a>
-<a href="https://redis.io/">
-    <img alt="Redis" src="resources/views/readme/redis.png" height="40" />
-</a>
-<a href="https://docker.com/">
-    <img alt="Docker" src="resources/views/readme/docker.png" height="40" />
-</a>
+</div>
+
+## 🚀 Getting Start
+
+This microservice was created with the purpose of having a module, in Node js, for creating and maintaining the registration of a system. Below you will get information on what technology was used, how to run the application, among other information
 
 ## ⛹️‍♂️ Run aplication
 
@@ -68,6 +55,13 @@ curl --request POST \
 ```
 
 Ready requests will only work if the other micro service has the app_key.
+
+## 👨‍💻 Technology
+[<img alt="AdonisJS" src="resources/views/readme/adonisjs.svg" height="40" />](https://adonisjs.com/)&nbsp; &nbsp; &nbsp;
+[<img alt="Adonis Person" src="resources/views/readme/adonis_person.svg" height="40" />](https://github.com/adonisjs/adonis-persona)&nbsp; &nbsp; &nbsp;
+[<img alt="Adonis Bull" src="resources/views/readme/adonis_bull.png" height="40" />](https://github.com/Rocketseat/adonis-bull)&nbsp; &nbsp; &nbsp;
+[<img alt="Redis" src="resources/views/readme/redis.png" height="40" />](https://redis.io/)&nbsp; &nbsp; &nbsp;
+[<img alt="Docker" src="resources/views/readme/docker.png" height="40" />](https://docker.com/)&nbsp; &nbsp; &nbsp;
 
 ## 🤞 Coming Soon
 
