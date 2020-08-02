@@ -212,13 +212,13 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
-"@rocketseat/adonis-bull@0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@rocketseat/adonis-bull/-/adonis-bull-0.2.1.tgz#961859f472ff8ea6226dff13a84a694de709a695"
-  integrity sha512-ZMU/nWivoRIYQslbnD5UtKw2el3Mr7njtgnLcaWF9hMUbWA3Hya191CYxT6u82i4gehywNpl5J5MMDfdPlwA7Q==
+"@rocketseat/adonis-bull@0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@rocketseat/adonis-bull/-/adonis-bull-0.2.2.tgz#5390dc8fe759f11f312a1f47a3130fe548967625"
+  integrity sha512-hJHHWqTjGSRk5BpaJzj6Tb3RKU0Krnx4/e4GfjcaDIzKPQ3iLlgpeRt9RIX7MLCCgH+Aqhdecho/e5D8Ok06Rw==
   dependencies:
     bull "^3.12.0"
-    bull-board "0.6.0"
+    bull-board "0.7.0"
     date-fns "^2.7.0"
     human-interval "^0.1.6"
 
@@ -747,10 +747,10 @@ buffer-equal-constant-time@1.0.1:
   resolved "https://registry.yarnpkg.com/buffer-equal-constant-time/-/buffer-equal-constant-time-1.0.1.tgz#f8e71132f7ffe6e01a5c9697a4c6f3e48d5cc819"
   integrity sha1-+OcRMvf/5uAaXJaXpMbz5I1cyBk=
 
-bull-board@0.6.0:
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/bull-board/-/bull-board-0.6.0.tgz#eb2cdb06c3058a581c6047beb2bb7554362842b7"
-  integrity sha512-Rx4FoVo5PUC8kuXpsRY/ewj2q/uTk/TwaA2mrd6Ijh60NCGBRDcIJN+Hk/dZoHXJWDwJBrcTp3Q42cekxbyv7Q==
+bull-board@0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/bull-board/-/bull-board-0.7.0.tgz#6b2fbf4b506eb8d09973266ef663806cb6f561c9"
+  integrity sha512-JB07wJ/beACer/BGwf+zsoPacPE91hGL2hnrzAAasVhE6u/7gz9hrA/irBExTwr4DlIgx+vVPS3oal9RRO5DEg==
   dependencies:
     body-parser "^1.17.2"
     bull "3.11.0"
