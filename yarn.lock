@@ -132,16 +132,16 @@
     pretty-hrtime "^1.0.3"
     require-all "^3.0.0"
 
-"@adonisjs/mail@3.0.10":
-  version "3.0.10"
-  resolved "https://registry.yarnpkg.com/@adonisjs/mail/-/mail-3.0.10.tgz#e270585555cb4d2f958dfe38b0a0656b0797ae3a"
-  integrity sha512-kl+h3TieYllAxcuGA2QGiebBTMAG+p6QkxXnrdtbRp14rfiQZptjDRlhwb/OXZrGHvAXvgYzkhZPlOxsH2uATA==
+"@adonisjs/mail@3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@adonisjs/mail/-/mail-3.1.0.tgz#07646be24378d3d9065c500341f0fbdef008b87b"
+  integrity sha512-kCCXhA1+D76Iwzpo9WkG3HvWg/jx1QX9hhYxRvA0bM0Hf+Yc3qjAZlye4pQlnAGgshU9M5SN3xGpOZ9dVQVJ4g==
   dependencies:
     "@adonisjs/generic-exceptions" "^2.0.1"
     clone "^2.1.2"
     debug "^4.0.1"
     form-data "^2.3.2"
-    get-stream "^4.0.0"
+    get-stream "^6.0.0"
     got "8.3.0"
     nodemailer "^4.6.8"
 
@@ -1714,12 +1714,17 @@ get-stream@3.0.0, get-stream@^3.0.0:
   resolved "https://registry.yarnpkg.com/get-stream/-/get-stream-3.0.0.tgz#8e943d1358dc37555054ecbe2edb05aa174ede14"
   integrity sha1-jpQ9E1jcN1VQVOy+LtsFqhdO3hQ=
 
-get-stream@^4.0.0, get-stream@^4.1.0:
+get-stream@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/get-stream/-/get-stream-4.1.0.tgz#c1b255575f3dc21d59bfc79cd3d2b46b1c3a54b5"
   integrity sha512-GMat4EJ5161kIy2HevLlr4luNjBgvmj413KaQA7jt4V8B4RDsfpHk7WQ9GVqfYyyx8OS/L66Kox+rJRNklLK7w==
   dependencies:
     pump "^3.0.0"
+
+get-stream@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/get-stream/-/get-stream-6.0.0.tgz#3e0012cb6827319da2706e601a1583e8629a6718"
+  integrity sha512-A1B3Bh1UmL0bidM/YX2NsCOTnGJePL9rO/M+Mw3m9f2gUpfokS0hi5Eah0WSUEWZdZhIZtMjkIYS7mDfOqNHbg==
 
 get-value@^2.0.3, get-value@^2.0.6:
   version "2.0.6"
